@@ -1,0 +1,681 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+  <h1>Create Optimal Hero Assignments</h1>
+  <br></br>
+  
+   {% if numHeroes == 1 or uniqueBattleTags == 1 or validHeroes == 1 or validBattleTags == 1 %}
+  <div class = "errorborder"><p class = "red"><strong>Error:</strong></p>
+  
+		<ul>{% if numHeroes == 1 %}
+	  <li class = "red">The number of heroes selected was not equal to or not greater than 6</li><br></br>
+	  <li class = "red">Please select 6 or more heroes</li><br></br>
+	  {% endif %}
+	  
+	  {% if uniqueBattleTags == 1 %}
+		<li class = "red">Duplicate players cannot be entered</li><br></br>
+		<li class = "red">Please enter unique players</li><br></br>
+		{% endif %}
+	  
+	  {% if validBattleTags == 1 %}
+		<li class = "red">One or more players that were entered did not have any heroes listed on overbuff.com</li><br></br>
+		<li class = "red">Please enter players that have at least one hero listed on overbuff.com</li><br></br>
+		{% endif %}
+	  </ul></div>
+  
+  
+  {% endif %}
+  
+
+
+	
+	
+	
+{% load static %}
+
+
+
+
+
+
+  <div class = "center">
+    <form action="" method="post">
+    {% csrf_token %}
+   
+   
+   
+   
+    {% if errorCounter.0 %}
+	    <p style = "text-indent: 9.4em">
+    {% elif duplicateBattleTags.0 %}
+	    <p style = "text-indent: 10.8em">
+	{% else %}	
+	<p>	
+	{% endif %}
+    <strong>Player 1</strong>
+    
+		{% if errorCounter.0 %}
+		<input class = "redborder" type="text", name = "BattleTag1", value = "{{ request.POST.BattleTag1 }}" required>
+	    <span class = "red"><strong>Invalid Player Error</strong></span>
+			{% elif duplicateBattleTags.0 %}
+	<input class = "redborder" type="text", name = "BattleTag1", value = "{{ request.POST.BattleTag1 }}" required>
+	    <span class = "red"><strong>Duplicate Player Error</strong></span>
+		{% else %}
+		<input type="text", name = "BattleTag1", value = "{{ request.POST.BattleTag1 }}" required>
+	{% endif %}
+	</p>
+
+	
+	
+	
+
+    {% if errorCounter.1 %}
+	    <p style = "text-indent: 9.4em">
+        {% elif duplicateBattleTags.1 %}
+	    <p style = "text-indent: 10.8em">
+	{% else %}	
+	<p>	
+	{% endif %}
+	<strong>Player 2</strong>
+    
+		{% if errorCounter.1 %}
+		<input class = "redborder" type="text", name = "BattleTag2", value = "{{ request.POST.BattleTag2 }}" required>
+	    <span class = "red"><strong>Invalid Player Error</strong></span>
+			{% elif duplicateBattleTags.1 %}
+	<input class = "redborder" type="text", name = "BattleTag2", value = "{{ request.POST.BattleTag2 }}" required>
+	    <span class = "red"><strong>Duplicate Player Error</strong></span>
+		{% else %}
+		<input type="text", name = "BattleTag2", value = "{{ request.POST.BattleTag2 }}" required>
+	{% endif %}
+	</p>
+
+	
+	
+	{% if errorCounter.2 %}
+	    <p style = "text-indent: 9.4em">
+		        {% elif duplicateBattleTags.2 %}
+	    <p style = "text-indent: 10.8em">
+	{% else %}	
+	<p>	
+	{% endif %}
+    <strong>Player 3</strong>
+    
+		{% if errorCounter.2 %}
+		<input class = "redborder" type="text", name = "BattleTag3", value = "{{ request.POST.BattleTag3 }}" required>
+	    <span class = "red"><strong>Invalid Player Error</strong></span>
+					{% elif duplicateBattleTags.2 %}
+	<input class = "redborder" type="text", name = "BattleTag3", value = "{{ request.POST.BattleTag3 }}" required>
+	    <span class = "red"><strong>Duplicate Player Error</strong></span>
+		{% else %}
+		<input type="text", name = "BattleTag3", value = "{{ request.POST.BattleTag3 }}" required>
+	{% endif %}
+	</p>
+	
+	
+	
+	{% if errorCounter.3%}
+	    <p style = "text-indent: 9.4em">
+				        {% elif duplicateBattleTags.3 %}
+	    <p style = "text-indent: 10.8em">
+	{% else %}	
+	<p>	
+	{% endif %}
+	<strong>Player 4</strong>
+		{% if errorCounter.3 %}
+		<input class = "redborder" type="text", name = "BattleTag4", value = "{{ request.POST.BattleTag4 }}" required>
+	    <span class = "red"><strong>Invalid Player Error</strong></span>
+							{% elif duplicateBattleTags.3 %}
+	<input class = "redborder" type="text", name = "BattleTag4", value = "{{ request.POST.BattleTag4 }}" required>
+	    <span class = "red"><strong>Duplicate Player Error</strong></span>
+		{% else %}
+		<input type="text", name = "BattleTag4", value = "{{ request.POST.BattleTag4 }}" required>
+	{% endif %}
+	</p>
+	
+	
+	
+	
+	{% if errorCounter.4 %}
+	    <p style = "text-indent: 9.4em">
+						        {% elif duplicateBattleTags.4 %}
+	    <p style = "text-indent: 10.8em">
+	{% else %}	
+	<p>	
+	{% endif %}
+    <strong>Player 5</strong>
+    
+		{% if errorCounter.4 %}
+		<input class = "redborder" type="text", name = "BattleTag5", value = "{{ request.POST.BattleTag5 }}" required>
+	    <span class = "red"><strong>Invalid Player Error</strong></span>
+									{% elif duplicateBattleTags.4 %}
+	<input class = "redborder" type="text", name = "BattleTag5", value = "{{ request.POST.BattleTag5 }}" required>
+	    <span class = "red"><strong>Duplicate Player Error</strong></span>
+		{% else %}
+		<input type="text", name = "BattleTag5", value = "{{ request.POST.BattleTag5 }}" required>
+	{% endif %}
+	</p>
+	
+	
+	
+	
+	{% if errorCounter.5 %}
+	    <p style = "text-indent: 9.4em">
+								        {% elif duplicateBattleTags.5 %}
+	    <p style = "text-indent: 10.8em">
+	{% else %}	
+	<p>	
+	{% endif %}
+	<strong>Player 6</strong>
+    
+		{% if errorCounter.5 %}
+		<input class = "redborder" type="text", name = "BattleTag6", value = "{{ request.POST.BattleTag6 }}" required>
+	    <span class = "red"><strong>Invalid Player Error</strong></span>
+											{% elif duplicateBattleTags.5 %}
+	<input class = "redborder" type="text", name = "BattleTag6", value = "{{ request.POST.BattleTag6 }}" required>
+	    <span class = "red"><strong>Duplicate Player Error</strong></span>
+		{% else %}
+		<input type="text", name = "BattleTag6", value = "{{ request.POST.BattleTag6 }}" required>
+		
+	{% endif %}
+	</p>
+	
+	
+	
+	
+	
+	
+	
+	<br></br>
+    <p>
+	Select 6 or more heroes
+	</p>
+
+	
+<ul class = "pics">
+    <li>	
+	{% if request.POST.Ana  %}
+	<input class = "checkHero", type = "checkbox", value = "clicked", name = "Ana", id = "Ana" checked>
+    <label for = "Ana"><img src="{% static 'css/Ana.png' %}" alt="My image"/><br></br>Ana</label>
+	{% else %}
+	<input class = "checkHero", type = "checkbox", value = "clicked", name = "Ana", id = "Ana">
+    <label for = "Ana"><img src="{% static 'css/Ana.png' %}" alt="My image"/><br></br>Ana</label>
+	{% endif %}
+	</li>
+
+
+
+
+    <li>	
+	{% if request.POST.Ashe  %}
+	<input class = "checkHero", type = "checkbox", value = "clicked", name = "Ashe", id = "Ashe" checked>
+    <label for = "Ashe"><img src="{% static 'css/Ashe.png' %}" alt="My image"/><br></br>Ashe</label>
+	{% else %}
+	<input class = "checkHero", type = "checkbox", value = "clicked", name = "Ashe", id = "Ashe">
+    <label for = "Ashe"><img src="{% static 'css/Ashe.png' %}" alt="My image"/><br></br>Ashe</label>
+	{% endif %}
+	</li>
+
+
+
+
+
+
+
+    <li>	
+	{% if request.POST.Baptiste  %}
+	<input class = "checkHero", type = "checkbox", value = "clicked", name = "Baptiste", id = "Baptiste" checked>
+    <label for = "Baptiste"><img src="{% static 'css/Baptiste.png' %}" alt="My image"/><br></br>Baptiste</label>
+	{% else %}
+	<input class = "checkHero", type = "checkbox", value = "clicked", name = "Baptiste", id = "Baptiste">
+    <label for = "Baptiste"><img src="{% static 'css/Baptiste.png' %}" alt="My image"/><br></br>Baptiste</label>
+	{% endif %}
+	</li>
+
+
+
+    <li>	
+	{% if request.POST.Bastion  %}
+	<input class = "checkHero", type = "checkbox", value = "clicked", name = "Bastion", id = "Bastion" checked>
+    <label for = "Bastion"><img src="{% static 'css/Bastion.png' %}" alt="My image"/><br></br>Bastion</label>
+	{% else %}
+	<input class = "checkHero", type = "checkbox", value = "clicked", name = "Bastion", id = "Bastion">
+    <label for = "Bastion"><img src="{% static 'css/Bastion.png' %}" alt="My image"/><br></br>Bastion</label>
+	{% endif %}
+	</li>
+
+
+
+
+
+    <li>	
+	{% if request.POST.Brigitte  %}
+	<input class = "checkHero", type = "checkbox", value = "clicked", name = "Brigitte", id = "Brigitte" checked>
+    <label for = "Brigitte"><img src="{% static 'css/Brigitte.png' %}" alt="My image"/><br></br>Brigitte</label>
+	{% else %}
+	<input class = "checkHero", type = "checkbox", value = "clicked", name = "Brigitte", id = "Brigitte">
+    <label for = "Brigitte"><img src="{% static 'css/Brigitte.png' %}" alt="My image"/><br></br>Brigitte</label>
+	{% endif %}
+	</li>
+
+
+
+
+    <li>	
+	{% if request.POST.Doomfist  %}
+	<input class = "checkHero", type = "checkbox", value = "clicked", name = "Doomfist", id = "Doomfist" checked>
+    <label for = "Doomfist"><img src="{% static 'css/Doomfist.png' %}" alt="My image"/><br></br>Doomfist</label>
+	{% else %}
+	<input class = "checkHero", type = "checkbox", value = "clicked", name = "Doomfist", id = "Doomfist">
+    <label for = "Doomfist"><img src="{% static 'css/Doomfist.png' %}" alt="My image"/><br></br>Doomfist</label>
+	{% endif %}
+	</li>
+
+
+
+
+    <li>	
+	{% if DVa == 1 %}
+	<input class = "checkHero", type = "checkbox", value = "clicked", name = "D.Va", id = "D.Va" checked>
+    <label for = "D.Va"><img src="{% static 'css/D.Va.png' %}" alt="My image"/><br></br>D.Va</label>
+	{% else %}
+	<input class = "checkHero", type = "checkbox", value = "clicked", name = "D.Va", id = "D.Va">
+    <label for = "D.Va"><img src="{% static 'css/D.Va.png' %}" alt="My image"/><br></br>D.Va</label>
+	{% endif %}
+	</li>
+
+
+
+
+
+    <li>	
+	{% if request.POST.Genji  %}
+	<input class = "checkHero", type = "checkbox", value = "clicked", name = "Genji", id = "Genji" checked>
+    <label for = "Genji"><img src="{% static 'css/Genji.png' %}" alt="My image"/><br></br>Genji</label>
+	{% else %}
+	<input class = "checkHero", type = "checkbox", value = "clicked", name = "Genji", id = "Genji">
+    <label for = "Genji"><img src="{% static 'css/Genji.png' %}" alt="My image"/><br></br>Genji</label>
+	{% endif %}
+	</li>
+
+
+
+
+
+
+    <li>	
+	{% if request.POST.Hanzo  %}
+	<input class = "checkHero", type = "checkbox", value = "clicked", name = "Hanzo", id = "Hanzo" checked>
+    <label for = "Hanzo"><img src="{% static 'css/Hanzo.png' %}" alt="My image"/><br></br>Hanzo</label>
+	{% else %}
+	<input class = "checkHero", type = "checkbox", value = "clicked", name = "Hanzo", id = "Hanzo">
+    <label for = "Hanzo"><img src="{% static 'css/Hanzo.png' %}" alt="My image"/><br></br>Hanzo</label>
+	{% endif %}
+	</li>
+
+
+
+
+    <li>	
+	{% if request.POST.Junkrat  %}
+	<input class = "checkHero", type = "checkbox", value = "clicked", name = "Junkrat", id = "Junkrat" checked>
+    <label for = "Junkrat"><img src="{% static 'css/Junkrat.png' %}" alt="My image"/><br></br>Junkrat</label>
+	{% else %}
+	<input class = "checkHero", type = "checkbox", value = "clicked", name = "Junkrat", id = "Junkrat">
+    <label for = "Junkrat"><img src="{% static 'css/Junkrat.png' %}" alt="My image"/><br></br>Junkrat</label>
+	{% endif %}
+	</li>
+
+
+
+
+
+    <li>	
+	{% if request.POST.Lúcio  %}
+	<input class = "checkHero", type = "checkbox", value = "clicked", name = "Lúcio", id = "Lúcio" checked>
+    <label for = "Lúcio"><img src="{% static 'css/Lucio.png' %}" alt="My image"/><br></br>Lúcio</label>
+	{% else %}
+	<input class = "checkHero", type = "checkbox", value = "clicked", name = "Lúcio", id = "Lúcio">
+    <label for = "Lúcio"><img src="{% static 'css/Lucio.png' %}" alt="My image"/><br></br>Lúcio</label>
+	{% endif %}
+	</li>
+
+
+
+
+
+    <li>	
+	{% if request.POST.McCree  %}
+	<input class = "checkHero", type = "checkbox", value = "clicked", name = "McCree", id = "McCree" checked>
+    <label for = "McCree"><img src="{% static 'css/McCree.png' %}" alt="My image"/><br></br>McCree</label>
+	{% else %}
+	<input class = "checkHero", type = "checkbox", value = "clicked", name = "McCree", id = "McCree">
+    <label for = "McCree"><img src="{% static 'css/McCree.png' %}" alt="My image"/><br></br>McCree</label>
+	{% endif %}
+	</li>
+
+
+
+
+
+
+    <li>	
+	{% if request.POST.Mei  %}
+	<input class = "checkHero", type = "checkbox", value = "clicked", name = "Mei", id = "Mei" checked>
+    <label for = "Mei"><img src="{% static 'css/Mei.png' %}" alt="My image"/><br></br>Mei</label>
+	{% else %}
+	<input class = "checkHero", type = "checkbox", value = "clicked", name = "Mei", id = "Mei">
+    <label for = "Mei"><img src="{% static 'css/Mei.png' %}" alt="My image"/><br></br>Mei</label>
+	{% endif %}
+	</li>
+
+
+
+
+
+    <li>	
+  
+	{% if request.POST.Mercy  %}
+	<input class = "checkHero", type = "checkbox", value = "clicked", name = "Mercy", id = "Mercy" checked>
+    <label for = "Mercy"><img src="{% static 'css/Mercy.png' %}" alt="My image"/><br></br>Mercy</label>
+	{% else %}
+	<input class = "checkHero", type = "checkbox", value = "clicked", name = "Mercy", id = "Mercy">
+    <label for = "Mercy"><img src="{% static 'css/Mercy.png' %}" alt="My image"/><br></br>Mercy</label>
+	{% endif %}
+	</li>
+
+	
+    <li>	
+  
+	{% if request.POST.Moira  %}
+	<input class = "checkHero", type = "checkbox", value = "clicked", name = "Moira", id = "Moira" checked>
+    <label for = "Moira"><img src="{% static 'css/Moira.png' %}" alt="My image"/><br></br>Moira</label>
+	{% else %}
+	<input class = "checkHero", type = "checkbox", value = "clicked", name = "Moira", id = "Moira">
+    <label for = "Moira"><img src="{% static 'css/Moira.png' %}" alt="My image"/><br></br>Moira</label>
+	{% endif %}
+	</li>
+
+
+
+
+    <li>	
+  
+	{% if request.POST.Orisa  %}
+	<input class = "checkHero", type = "checkbox", value = "clicked", name = "Orisa", id = "Orisa" checked>
+    <label for = "Orisa"><img src="{% static 'css/Orisa.png' %}" alt="My image"/><br></br>Orisa</label>
+	{% else %}
+	<input class = "checkHero", type = "checkbox", value = "clicked", name = "Orisa", id = "Orisa">
+    <label for = "Orisa"><img src="{% static 'css/Orisa.png' %}" alt="My image"/><br></br>Orisa</label>
+	{% endif %}
+	</li>
+
+
+
+
+    <li>	
+  
+	{% if request.POST.Pharah  %}
+	<input class = "checkHero", type = "checkbox", value = "clicked", name = "Pharah", id = "Pharah" checked>
+    <label for = "Pharah"><img src="{% static 'css/Pharah.png' %}" alt="My image"/><br></br>Pharah</label>
+	{% else %}
+	<input class = "checkHero", type = "checkbox", value = "clicked", name = "Pharah", id = "Pharah">
+    <label for = "Pharah"><img src="{% static 'css/Pharah.png' %}" alt="My image"/><br></br>Pharah</label>
+	{% endif %}
+	</li>
+
+
+
+
+    <li>	
+  
+	{% if request.POST.Reaper  %}
+	<input class = "checkHero", type = "checkbox", value = "clicked", name = "Reaper", id = "Reaper" checked>
+    <label for = "Reaper"><img src="{% static 'css/Reaper.png' %}" alt="My image"/><br></br>Reaper</label>
+	{% else %}
+	<input class = "checkHero", type = "checkbox", value = "clicked", name = "Reaper", id = "Reaper">
+    <label for = "Reaper"><img src="{% static 'css/Reaper.png' %}" alt="My image"/><br></br>Reaper</label>
+	{% endif %}
+	</li>
+
+
+
+
+
+    <li>	
+  
+	{% if request.POST.Reinhardt  %}
+	<input class = "checkHero", type = "checkbox", value = "clicked", name = "Reinhardt", id = "Reinhardt" checked>
+    <label for = "Reinhardt"><img src="{% static 'css/Reinhardt.png' %}" alt="My image"/><br></br>Reinhardt</label>
+	{% else %}
+	<input class = "checkHero", type = "checkbox", value = "clicked", name = "Reinhardt", id = "Reinhardt">
+    <label for = "Reinhardt"><img src="{% static 'css/Reinhardt.png' %}" alt="My image"/><br></br>Reinhardt</label>
+	{% endif %}
+	</li>
+
+
+
+
+
+
+
+    <li>	
+  
+	{% if request.POST.Roadhog  %}
+	<input class = "checkHero", type = "checkbox", value = "clicked", name = "Roadhog", id = "Roadhog" checked>
+    <label for = "Roadhog"><img src="{% static 'css/Roadhog.png' %}" alt="My image"/><br></br>Roadhog</label>
+	{% else %}
+	<input class = "checkHero", type = "checkbox", value = "clicked", name = "Roadhog", id = "Roadhog">
+    <label for = "Roadhog"><img src="{% static 'css/Roadhog.png' %}" alt="My image"/><br></br>Roadhog</label>
+	{% endif %}
+	</li>
+
+
+
+<li>	
+  
+	{% if request.POST.Sigma  %}
+	<input class = "checkHero", type = "checkbox", value = "clicked", name = "Sigma", id = "Sigma" checked>
+    <label for = "Sigma"><img src="{% static 'css/Sigma.png' %}" alt="My image"/><br></br>Sigma</label>
+	{% else %}
+	<input class = "checkHero", type = "checkbox", value = "clicked", name = "Sigma", id = "Sigma">
+    <label for = "Sigma"><img src="{% static 'css/Sigma.png' %}" alt="My image"/><br></br>Sigma</label>
+	{% endif %}
+	</li>
+
+
+
+    <li>	
+  
+	{% if Soldier76 == 1 %}
+	<input class = "checkHero", type = "checkbox", value = "clicked", name = "Soldier: 76", id = "Soldier: 76" checked>
+    <label for = "Soldier: 76"><img src="{% static 'css/Soldier 76.png' %}" alt="My image"/><br></br>Soldier: 76</label>
+	{% else %}
+	<input class = "checkHero", type = "checkbox", value = "clicked", name = "Soldier: 76", id = "Soldier: 76">
+    <label for = "Soldier: 76"><img src="{% static 'css/Soldier 76.png' %}" alt="My image"/><br></br>Soldier: 76</label>
+	{% endif %}
+	</li>
+
+
+
+
+
+
+    <li>	
+  
+	{% if request.POST.Sombra  %}
+	<input class = "checkHero", type = "checkbox", value = "clicked", name = "Sombra", id = "Sombra" checked>
+    <label for = "Sombra"><img src="{% static 'css/Sombra.png' %}" alt="My image"/><br></br>Sombra</label>
+	{% else %}
+	<input class = "checkHero", type = "checkbox", value = "clicked", name = "Sombra", id = "Sombra">
+    <label for = "Sombra"><img src="{% static 'css/Sombra.png' %}" alt="My image"/><br></br>Sombra</label>
+	{% endif %}
+	</li>
+
+
+
+
+
+
+
+
+    <li>	
+  
+	{% if request.POST.Symmetra  %}
+	<input class = "checkHero", type = "checkbox", value = "clicked", name = "Symmetra", id = "Symmetra" checked>
+    <label for = "Symmetra"><img src="{% static 'css/Symmetra.png' %}" alt="My image"/><br></br>Symmetra</label>
+	{% else %}
+	<input class = "checkHero", type = "checkbox", value = "clicked", name = "Symmetra", id = "Symmetra">
+    <label for = "Symmetra"><img src="{% static 'css/Symmetra.png' %}" alt="My image"/><br></br>Symmetra</label>
+	{% endif %}
+	</li>
+
+
+
+
+
+
+
+    <li>	
+  
+	{% if request.POST.Torbjörn  %}
+	<input class = "checkHero", type = "checkbox", value = "clicked", name = "Torbjörn", id = "Torbjörn" checked>
+    <label for = "Torbjörn"><img src="{% static 'css/Torbjorn.png' %}" alt="My image"/><br></br>Torbjörn</label>
+	{% else %}
+	<input class = "checkHero", type = "checkbox", value = "clicked", name = "Torbjörn", id = "Torbjörn">
+    <label for = "Torbjörn"><img src="{% static 'css/Torbjorn.png' %}" alt="My image"/><br></br>Torbjörn</label>
+	{% endif %}
+	</li>
+
+
+
+
+
+
+     <li>	
+  
+	{% if request.POST.Tracer  %}
+	<input class = "checkHero", type = "checkbox", value = "clicked", name = "Tracer", id = "Tracer" checked>
+    <label for = "Tracer"><img src="{% static 'css/Tracer.png' %}" alt="My image"/><br></br>Tracer</label>
+	{% else %}
+	<input class = "checkHero", type = "checkbox", value = "clicked", name = "Tracer", id = "Tracer">
+    <label for = "Tracer"><img src="{% static 'css/Tracer.png' %}" alt="My image"/><br></br>Tracer</label>
+	{% endif %}
+	</li>
+
+
+
+
+
+
+  <li>	
+  
+	{% if request.POST.Widowmaker  %}
+	<input class = "checkHero", type = "checkbox", value = "clicked", name = "Widowmaker", id = "Widowmaker" checked>
+    <label for = "Widowmaker"><img src="{% static 'css/Widowmaker.png' %}" alt="My image"/><br></br>Widowmaker</label>
+	{% else %}
+	<input class = "checkHero", type = "checkbox", value = "clicked", name = "Widowmaker", id = "Widowmaker">
+    <label for = "Widowmaker"><img src="{% static 'css/Widowmaker.png' %}" alt="My image"/><br></br>Widowmaker</label>
+	{% endif %}
+	</li>
+
+
+
+
+
+
+
+    <li>	
+  
+	{% if request.POST.Winston  %}
+	<input class = "checkHero", type = "checkbox", value = "clicked", name = "Winston", id = "Winston" checked>
+    <label for = "Winston"><img src="{% static 'css/Winston.png' %}" alt="My image"/><br></br>Winston</label>
+	{% else %}
+	<input class = "checkHero", type = "checkbox", value = "clicked", name = "Winston", id = "Winston">
+    <label for = "Winston"><img src="{% static 'css/Winston.png' %}" alt="My image"/><br></br>Winston</label>
+	{% endif %}
+	</li>
+
+
+
+
+
+
+   <li>	
+  
+	{% if WreckingBall == 1 %}
+	<input class = "checkHero", type = "checkbox", value = "clicked", name = "Wrecking Ball", id = "Wrecking Ball" checked>
+    <label for = "Wrecking Ball"><img src="{% static 'css/Wrecking Ball.png' %}" alt="My image"/><br></br>Wrecking Ball</label>
+	{% else %}
+	<input class = "checkHero", type = "checkbox", value = "clicked", name = "Wrecking Ball", id = "Wrecking Ball">
+    <label for = "Wrecking Ball"><img src="{% static 'css/Wrecking Ball.png' %}" alt="My image"/><br></br>Wrecking Ball</label>
+	{% endif %}
+	</li>
+
+	
+  <li>	
+  
+	{% if request.POST.Zarya  %}
+	<input class = "checkHero", type = "checkbox", value = "clicked", name = "Zarya", id = "Zarya" checked>
+    <label for = "Zarya"><img src="{% static 'css/Zarya.png' %}" alt="My image"/><br></br>Zarya</label>
+	{% else %}
+	<input class = "checkHero", type = "checkbox", value = "clicked", name = "Zarya", id = "Zarya">
+    <label for = "Zarya"><img src="{% static 'css/Zarya.png' %}" alt="My image"/><br></br>Zarya</label>
+	{% endif %}
+	</li>
+	
+	
+	
+
+
+	
+	<li>
+  {% if request.POST.Zenyatta  %}
+	<input class = "checkHero", type = "checkbox", value = "clicked", name = "Zenyatta", id = "Zenyatta" checked>
+    <label for = "Zenyatta"><img src="{% static 'css/Zenyatta.png' %}" alt="My image"/><br></br>Zenyatta</label>
+	{% else %}
+	<input class = "checkHero", type = "checkbox", value = "clicked", name = "Zenyatta", id = "Zenyatta">
+    <label for = "Zenyatta"><img src="{% static 'css/Zenyatta.png' %}" alt="My image"/><br></br>Zenyatta</label>
+	{% endif %}
+  </li>
+</ul>
+
+
+
+
+	
+
+<br></br>
+	<br></br>
+	
+	
+	
+    <button type="submit", name = "create", value="create", class = "button">Create Hero Assignments</button>
+
+	
+    
+    
+  </form>
+   
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

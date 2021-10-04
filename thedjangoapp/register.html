@@ -1,0 +1,83 @@
+{% extends "base_generic.html" %}
+
+
+
+{% block content %}
+<h1>Create Account</h1><br></br>
+
+    <form method = "post"  action="">
+        {% csrf_token %}
+		
+		{% if error == 1%}
+		<div class = "errorborder">
+		<p class = "red"><strong>Error:</strong></p>
+		
+		
+			{% if duplicateUser == 1 %}
+			
+			<li class = "red">The username that was entered already exists</li><br></br>
+			<li class = "red">Please enter a different username</li><br></br>
+			{% endif %}
+			
+			
+			{% if invalidUsername == 1 %}
+			<li class = "red">The username entered did not contain letters and digits only</li><br></br>
+			<li class = "red">Please enter a username that contains letters and digits only </li><br></br>
+			{% endif %}
+			
+			{% if invalidUsernameLength == 1 %}
+			<li class = "red">The username entered did not have a length of 8 to 16 characters</li><br></br>
+			<li class = "red">Please enter a username that has a length of 8 to 16 characters</li><br></br>
+			{% endif %}
+			
+			
+			{% if invalidPasswordLength == 1 %}
+			<li class = "red">The password entered did not have a length of 8 to 32 characters</li><br></br>
+			<li class = "red">Please enter a password that has a length of 8 to 32 characters</li><br></br>
+			{% endif %}
+			
+			{% if invalidPasswordConfirmation == 1 %}
+			<li class = "red">The password entered did not match the password confirmation</li><br></br>
+			<li class = "red">Please match both passwords</li><br></br>
+			{% endif %}
+			
+			{% if invalidPasswordChar == 1 %}
+			<li class = "red">The password must contain at least one capital letter, one lowercase letter,<br></br>
+		    one digit, and one of the following characters: !,@,#,$,%,^,&,*,(,), and <br></br>
+			can only contain these characters</li><br></br>
+			<li class = "red">Please enter a password using only the specified characters</li><br></br>
+			{% endif %}
+
+		</div>
+		{% endif %}
+		
+		<p>8-16 characters. Letters and digits only.</p>
+		<p><strong>Username</strong>
+    <input type="text", name = "username", value = "{{ request.POST.username }}" required>
+	</p><br></br>
+		
+		<p>8-32 characters. Must include one capital letter, one lowercase letter,<br></br>
+		one digit, and one of the following characters: !,@,#,$,%,^,&,*,(,), and <br></br>
+        can only contain these characters.
+		<p><strong>Password</strong>
+    <input type="password", name = "password1", value = "{{ request.POST.password1 }}" required>
+	</p>
+		
+		
+
+		<p style = "text-indent:-6.5em"><strong>Password Confirmation</strong>
+    <input type="password", name = "password2", value = "{{ request.POST.password2 }}" required>
+	</p><br></br>
+		
+		
+
+        <p style = "text-indent: 5em"><button type = "submit" class = "button">Create Account</button></p>
+		
+    </form>
+
+
+{% endblock %}
+
+
+
+

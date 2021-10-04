@@ -1,0 +1,46 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+<h1>Manage Team Composition</h1><br></br><br></br>
+<form action="" method="post">
+{% csrf_token %}
+    {% if remove == 1 %}
+	<div style = "display: flex;       
+    width: 25em;
+    height: 1.5em;	
+    margin-right: auto;
+    margin-left: auto;
+    justify-content: flex-start;
+    font-size: 1.2em;
+	font-weight: bold;"><div><strong>Team Composition</strong></div><div></div></div>
+    <div class = "linebox1"><hr class = "lineColor"></div>
+	{% endif %}
+    {% for td in user.teamlist.all %}
+        <div class = "boxRemove"><div class = "box2remove"><a href = "/thedjangoapp/teamList/{{td.id}}">{{ td.name }}</a> </div> <div class = "box2remove">
+		<input type = "checkbox", value = "clicked", name = "{{ td.id }}" /><span>Remove</span></div></div>
+		<div class = "linebox1"><hr class = "lineColor"></div>
+    {% endfor %}
+    {% if remove == 1 %}
+		<br></br><button class = "button", type = "submit", name="removeTeam", value = "removeTeam">Remove</button>
+    {% else %}
+	    <p>You currently have zero saved team compositions to manage.</p>
+	{%  endif %}
+</form>
+{% else %}
+<br></br><h3>You are currently not logged into your account.</h3>
+{% endif %}
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+

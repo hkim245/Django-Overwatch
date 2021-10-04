@@ -1,0 +1,211 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+<br></br>
+ <form action="" method="post">
+    {% csrf_token %}
+	
+	{% if error == 1 or error == 2 %}
+	<div class = "errorborder">
+	{% endif %}
+	
+	{% if error == 1 %}
+  <p class = "red"><strong>Error:</strong></p>
+  
+  <ul>
+	  <li class = "red">A name was not entered</li><br/>
+      <li class = "red">Please enter a name</li><br/>
+
+	  </ul><br></br>
+  
+  
+  
+  {% elif error == 2 %}
+  
+  <p class = "red"><strong>Error:</strong></p>
+  
+  <ul>
+	  <li class = "red">The name entered was more than 20 characters</li><br/>
+	  <li class = "red">Please enter a name that is less than 20 characters</li><br/>
+
+
+	  </ul><br></br>
+  
+  
+  
+  {% endif %}
+  
+  
+	{% if error == 1 or error == 2 %}
+	</div>
+	{% endif %}
+	
+	 {% load static %}
+	
+	
+	
+	
+	
+    
+	<h3><label>Enter a name to save your team composition(less than 20 characters):
+    <input type="text", name = "name"></label></h2><br></br>
+
+	<button type="submit", name = "save", value="save", class = "button">Save Team</button><br/><br/><br/><br/>
+	
+
+	    <div class = "box3">
+    <div><strong>Player</strong></div> <div style = "margin-left: 13.5em;"><strong>Hero</strong></div></div>
+	<div class = "linebox"><hr class = "lineColor"></div>
+	
+
+	
+	{% if request.POST.twoPlayers %}
+    <div class = "box2"><div class = "box2player">{{ request.POST.battleTag1 }}</div> <div><label for = "{{hero1}}"><img src="{% static request.POST.img1 %}" alt="My image"/><br></br>{{ request.POST.hero1 }}</label></div></div>
+	<div class = "linebox"><hr class = "lineColor"></div>
+    <div class = "box2"><div class = "box2player">{{ request.POST.battleTag2 }}</div> <div><label for = "{{hero2}}"><img src="{% static request.POST.img2 %}" alt="My image"/><br></br>{{ request.POST.hero2 }}</label></div></div>
+	<input type="hidden" name="twoPlayers" value= "{{ request.POST.twoPlayers }}"/>
+	    <input type="hidden" name="battleTag1" value= "{{ request.POST.battleTag1 }}"/>
+    <input type="hidden" name="battleTag2" value= "{{ request.POST.battleTag2 }}"/>
+	    <input type="hidden" name="hero1" value= "{{ request.POST.hero1 }}"/>
+    <input type="hidden" name="hero2" value= "{{ request.POST.hero2 }}"/>
+			<input type="hidden" name="img1" value= "{{ request.POST.img1 }}"/>
+    <input type="hidden" name="img2" value= "{{ request.POST.img2 }}"/>
+	{% endif %}
+	
+	
+	
+	
+	
+    {% if request.POST.threePlayers %}
+    <div class = "box2"><div class = "box2player">{{ request.POST.battleTag1 }}</div> <div><label for = "{{hero1}}"><img src="{% static request.POST.img1 %}" alt="My image"/><br></br>{{ request.POST.hero1 }}</label></div></div>
+	<div class = "linebox"><hr class = "lineColor"></div>
+    <div class = "box2"><div class = "box2player">{{ request.POST.battleTag2 }}</div> <div><label for = "{{hero2}}"><img src="{% static request.POST.img2 %}" alt="My image"/><br></br>{{ request.POST.hero2 }}</label></div></div>
+	<div class = "linebox"><hr class = "lineColor"></div>
+    <div class = "box2"><div class = "box2player">{{ request.POST.battleTag3 }}</div> <div><label for = "{{hero3}}"><img src="{% static request.POST.img3 %}" alt="My image"/><br></br>{{ request.POST.hero3 }}</label></div></div>
+	<input type="hidden" name="threePlayers" value= "{{ request.POST.threePlayers }}"/>
+	    <input type="hidden" name="hero1" value= "{{ request.POST.hero1 }}"/>
+    <input type="hidden" name="hero2" value= "{{request.POST.hero2 }}"/>
+    <input type="hidden" name="hero3" value= "{{ request.POST.hero3 }}"/>
+		    <input type="hidden" name="battleTag1" value= "{{ request.POST.battleTag1 }}"/>
+    <input type="hidden" name="battleTag2" value= "{{ request.POST.battleTag2 }}"/>
+    <input type="hidden" name="battleTag3" value= "{{ request.POST.battleTag3 }}"/>
+			<input type="hidden" name="img1" value= "{{ request.POST.img1 }}"/>
+    <input type="hidden" name="img2" value= "{{ request.POST.img2 }}"/>
+    <input type="hidden" name="img3" value= "{{ request.POST.img3 }}"/>
+	{% endif %}
+	
+	
+	
+	
+
+	
+	
+	{% if request.POST.fourPlayers %}
+    <div class = "box2"><div class = "box2player">{{ request.POST.battleTag1 }}</div> <div><label for = "{{hero1}}"><img src="{% static request.POST.img1 %}" alt="My image"/><br></br>{{ request.POST.hero1 }}</label></div></div>
+	<div class = "linebox"><hr class = "lineColor"></div>
+    <div class = "box2"><div class = "box2player">{{ request.POST.battleTag2 }}</div> <div><label for = "{{hero2}}"><img src="{% static request.POST.img2 %}" alt="My image"/><br></br>{{ request.POST.hero2 }}</label></div></div>
+	<div class = "linebox"><hr class = "lineColor"></div>
+    <div class = "box2"><div class = "box2player">{{ request.POST.battleTag3 }}</div> <div><label for = "{{hero3}}"><img src="{% static request.POST.img3 %}" alt="My image"/><br></br>{{ request.POST.hero3 }}</label></div></div>
+	<div class = "linebox"><hr class = "lineColor"></div>
+    <div class = "box2"><div class = "box2player">{{ request.POST.battleTag4 }}</div> <div><label for = "{{hero4}}"><img src="{% static request.POST.img4 %}" alt="My image"/><br></br>{{ request.POST.hero4 }}</label></div></div>
+	<input type="hidden" name="fourPlayers" value= "{{ request.POST.fourPlayers }}"/>
+			    <input type="hidden" name="battleTag1" value= "{{ request.POST.battleTag1 }}"/>
+    <input type="hidden" name="battleTag2" value= "{{ request.POST.battleTag2 }}"/>
+    <input type="hidden" name="battleTag3" value= "{{ request.POST.battleTag3 }}"/>
+    <input type="hidden" name="battleTag4" value= "{{ request.POST.battleTag4 }}"/>
+	    <input type="hidden" name="hero1" value= "{{ request.POST.hero1 }}"/>
+    <input type="hidden" name="hero2" value= "{{ request.POST.hero2 }}"/>
+    <input type="hidden" name="hero3" value= "{{ request.POST.hero3 }}"/>
+    <input type="hidden" name="hero4" value= "{{ request.POST.hero4 }}"/>
+			<input type="hidden" name="img1" value= "{{ request.POST.img1 }}"/>
+    <input type="hidden" name="img2" value= "{{ request.POST.img2 }}"/>
+    <input type="hidden" name="img3" value= "{{ request.POST.img3 }}"/>
+    <input type="hidden" name="img4" value= "{{ request.POST.img4 }}"/>
+	{% endif %}
+	
+	{% if request.POST.fivePlayers %}
+    <div class = "box2"><div class = "box2player">{{ request.POST.battleTag1 }}</div> <div><label for = "{{hero1}}"><img src="{% static request.POST.img1 %}" alt="My image"/><br></br>{{ request.POST.hero1 }}</label></div></div>
+	<div class = "linebox"><hr class = "lineColor"></div>
+    <div class = "box2"><div class = "box2player">{{ request.POST.battleTag2 }}</div> <div><label for = "{{hero2}}"><img src="{% static request.POST.img2 %}" alt="My image"/><br></br>{{ request.POST.hero2 }}</label></div></div>
+	<div class = "linebox"><hr class = "lineColor"></div>
+    <div class = "box2"><div class = "box2player">{{ request.POST.battleTag3 }}</div> <div><label for = "{{hero3}}"><img src="{% static request.POST.img3 %}" alt="My image"/><br></br>{{ request.POST.hero3 }}</label></div></div>
+	<div class = "linebox"><hr class = "lineColor"></div>
+    <div class = "box2"><div class = "box2player">{{ request.POST.battleTag4 }}</div> <div><label for = "{{hero4}}"><img src="{% static request.POST.img4 %}" alt="My image"/><br></br>{{ request.POST.hero4 }}</label></div></div>
+	<div class = "linebox"><hr class = "lineColor"></div>
+    <div class = "box2"><div class = "box2player">{{ request.POST.battleTag5 }}</div> <div><label for = "{{hero5}}"><img src="{% static request.POST.img5 %}" alt="My image"/><br></br>{{ request.POST.hero5 }}</label></div></div>
+	<input type="hidden" name="fivePlayers" value= "{{ request.POST.fivePlayers }}"/>
+			    <input type="hidden" name="battleTag1" value= "{{ request.POST.battleTag1 }}"/>
+    <input type="hidden" name="battleTag2" value= "{{ request.POST.battleTag2 }}"/>
+    <input type="hidden" name="battleTag3" value= "{{ request.POST.battleTag3 }}"/>
+    <input type="hidden" name="battleTag4" value= "{{ request.POST.battleTag4 }}"/>
+    <input type="hidden" name="battleTag5" value= "{{ request.POST.battleTag5 }}"/>
+	    <input type="hidden" name="hero1" value= "{{ request.POST.hero1 }}"/>
+    <input type="hidden" name="hero2" value= "{{ request.POST.hero2 }}"/>
+    <input type="hidden" name="hero3" value= "{{ request.POST.hero3 }}"/>
+    <input type="hidden" name="hero4" value= "{{ request.POST.hero4 }}"/>
+    <input type="hidden" name="hero5" value= "{{ request.POST.hero5 }}"/>
+			<input type="hidden" name="img1" value= "{{ request.POST.img1 }}"/>
+    <input type="hidden" name="img2" value= "{{ request.POST.img2 }}"/>
+    <input type="hidden" name="img3" value= "{{ request.POST.img3 }}"/>
+    <input type="hidden" name="img4" value= "{{ request.POST.img4 }}"/>
+    <input type="hidden" name="img5" value= "{{ request.POST.img5 }}"/>
+	{% endif %}
+	
+	{% if request.POST.sixPlayers %}
+    <div class = "box2"><div class = "box2player">{{ request.POST.battleTag1 }}</div> <div><label for = "{{hero1}}"><img src="{% static request.POST.img1 %}" alt="My image"/><br></br>{{ request.POST.hero1 }}</label></div></div>
+	<div class = "linebox"><hr class = "lineColor"></div>
+    <div class = "box2"><div class = "box2player">{{ request.POST.battleTag2 }}</div> <div><label for = "{{hero2}}"><img src="{% static request.POST.img2 %}" alt="My image"/><br></br>{{ request.POST.hero2 }}</label></div></div>
+	<div class = "linebox"><hr class = "lineColor"></div>
+    <div class = "box2"><div class = "box2player">{{ request.POST.battleTag3 }}</div> <div><label for = "{{hero3}}"><img src="{% static request.POST.img3 %}" alt="My image"/><br></br>{{ request.POST.hero3 }}</label></div></div>
+	<div class = "linebox"><hr class = "lineColor"></div>
+    <div class = "box2"><div class = "box2player">{{ request.POST.battleTag4 }}</div> <div><label for = "{{hero4}}"><img src="{% static request.POST.img4 %}" alt="My image"/><br></br>{{ request.POST.hero4 }}</label></div></div>
+	<div class = "linebox"><hr class = "lineColor"></div>
+    <div class = "box2"><div class = "box2player">{{ request.POST.battleTag5 }}</div> <div><label for = "{{hero5}}"><img src="{% static request.POST.img5 %}" alt="My image"/><br></br>{{ request.POST.hero5 }}</label></div></div>
+	<div class = "linebox"><hr class = "lineColor"></div>
+    <div class = "box2"><div class = "box2player">{{ request.POST.battleTag6 }}</div> <div><label for = "{{hero6}}"><img src="{% static request.POST.img6 %}" alt="My image"/><br></br>{{ request.POST.hero6 }}</label></div></div>
+	<input type="hidden" name="sixPlayers" value= "{{ request.POST.sixPlayers }}"/>
+			    <input type="hidden" name="battleTag1" value= "{{ request.POST.battleTag1 }}"/>
+    <input type="hidden" name="battleTag2" value= "{{ request.POST.battleTag2 }}"/>
+    <input type="hidden" name="battleTag3" value= "{{ request.POST.battleTag3 }}"/>
+    <input type="hidden" name="battleTag4" value= "{{ request.POST.battleTag4 }}"/>
+    <input type="hidden" name="battleTag5" value= "{{ request.POST.battleTag5 }}"/>
+    <input type="hidden" name="battleTag6" value= "{{ request.POST.battleTag6 }}"/>
+    <input type="hidden" name="hero1" value= "{{ request.POST.hero1 }}"/>
+    <input type="hidden" name="hero2" value= "{{ request.POST.hero2 }}"/>
+    <input type="hidden" name="hero3" value= "{{ request.POST.hero3 }}"/>
+    <input type="hidden" name="hero4" value= "{{ request.POST.hero4 }}"/>
+    <input type="hidden" name="hero5" value= "{{ request.POST.hero5 }}"/>
+    <input type="hidden" name="hero6" value= "{{ request.POST.hero6 }}"/>
+		<input type="hidden" name="img1" value= "{{ request.POST.img1 }}"/>
+    <input type="hidden" name="img2" value= "{{ request.POST.img2 }}"/>
+    <input type="hidden" name="img3" value= "{{ request.POST.img3 }}"/>
+    <input type="hidden" name="img4" value= "{{ request.POST.img4 }}"/>
+    <input type="hidden" name="img5" value= "{{ request.POST.img5 }}"/>
+    <input type="hidden" name="img6" value= "{{ request.POST.img6 }}"/>
+	{% endif %}
+	
+
+	        <div class = "linebox"><hr class = "lineColor"></div>
+
+	
+	
+	
+	
+	
+	
+	
+	
+    
+    
+  </form>
+  
+  
+  
+{% else %}
+    <br></br><h3>You are currently not logged into your account.</h3>
+  
+{% endif %}
+
+{% endblock %}

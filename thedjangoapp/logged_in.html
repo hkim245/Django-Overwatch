@@ -1,0 +1,13 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+<br></br>
+  <h3>Hello, {{ user.get_username }}. You have logged into your account.</h3>  
+{% else %}  
+    <br></br><h3>You are currently not logged into your account.</h3>
+{% endif %}	
+  
+  
+{% endblock %}

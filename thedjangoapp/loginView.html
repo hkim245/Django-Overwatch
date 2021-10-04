@@ -1,0 +1,74 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+
+
+
+  {% if user.is_authenticated %}
+    <h1>Page Not Found</h1>
+  {% else %}
+    
+
+
+<h1>Login</h1><br></br>
+
+{% if error == 1 %}
+<div class = "errorborder">
+  <p class = "red"><strong>Error:</strong></p>
+	
+	{% if validUsername == 0 %}
+      <li class = "red">The username entered does not exist</li><br></br>
+	  <li class = "red">Please enter an existing username</li><br></br>
+	{% else %}
+	  <li class = "red">The username and password entered did not match</li><br></br>
+	  <li class = "red">Please enter the username and password that match</li><br></br>
+  {% endif %}
+  
+  
+  </div>
+{% endif %}
+
+<form method="post" action="">
+{% csrf_token %}
+
+
+<p><strong>Username</strong>
+    <input type="text", name = "username", value = "{{ request.POST.username }}" required>
+	</p><br></br>
+	
+<p><strong>Password</strong>
+    <input type="password", name = "password", value = "{{ request.POST.password }}" required>
+	</p><br></br>
+
+<p style = "text-indent: 5em"><input type="submit" class = "button" value="Login" /></p>
+
+
+
+</form>
+<br></br>
+{# Assumes you setup the password_reset view in your URLconf #}
+<!-- <p><a href="{% url 'password_reset' %}">Lost password?</a></p> -->
+{% endif %}
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

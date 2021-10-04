@@ -1,0 +1,191 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+ {% load static %}
+    <h1>Optimal Hero Assignments</h1><br></br>
+	
+
+	    <div class = "box3">
+    <div><strong>Player</strong></div> <div style = "margin-left: 13.5em;"><strong>Hero</strong></div></div>
+	<div class = "linebox"><hr class = "lineColor"></div>
+	
+	
+    {% if twoPlayers == 1 %}
+    <div class = "box2"><div class = "box2player">{{ battleTag1 }}</div> <div><label for = "{{hero1}}"><img src="{% static img1 %}" alt="My image"/><br></br>{{ hero1 }}</label></div></div>
+	<div class = "linebox"><hr class = "lineColor"></div>
+    <div class = "box2"><div class = "box2player">{{ battleTag2 }}</div> <div><label for = "{{hero2}}"><img src="{% static img2 %}" alt="My image"/><br></br>{{ hero2 }}</label></div></div>
+	{% endif %}
+	
+    {% if threePlayers == 1 %}
+    <div class = "box2"><div class = "box2player">{{ battleTag1 }}</div> <div><label for = "{{hero1}}"><img src="{% static img1 %}" alt="My image"/><br></br>{{ hero1 }}</label></div></div>
+	<div class = "linebox"><hr class = "lineColor"></div>
+    <div class = "box2"><div class = "box2player">{{ battleTag2 }}</div> <div><label for = "{{hero2}}"><img src="{% static img2 %}" alt="My image"/><br></br>{{ hero2 }}</label></div></div>
+	<div class = "linebox"><hr class = "lineColor"></div>
+    <div class = "box2"><div class = "box2player">{{ battleTag3 }}</div> <div><label for = "{{hero3}}"><img src="{% static img3 %}" alt="My image"/><br></br>{{ hero3 }}</label></div></div>
+	{% endif %}
+	
+    {% if fourPlayers == 1 %}
+    <div class = "box2"><div class = "box2player">{{ battleTag1 }}</div> <div><label for = "{{hero1}}"><img src="{% static img1 %}" alt="My image"/><br></br>{{ hero1 }}</label></div></div>
+	<div class = "linebox"><hr class = "lineColor"></div>
+    <div class = "box2"><div class = "box2player">{{ battleTag2 }}</div> <div><label for = "{{hero2}}"><img src="{% static img2 %}" alt="My image"/><br></br>{{ hero2 }}</label></div></div>
+	<div class = "linebox"><hr class = "lineColor"></div>
+    <div class = "box2"><div class = "box2player">{{ battleTag3 }}</div> <div><label for = "{{hero3}}"><img src="{% static img3 %}" alt="My image"/><br></br>{{ hero3 }}</label></div></div>
+	<div class = "linebox"><hr class = "lineColor"></div>
+    <div class = "box2"><div class = "box2player">{{ battleTag4 }}</div> <div><label for = "{{hero4}}"><img src="{% static img4 %}" alt="My image"/><br></br>{{ hero4 }}</label></div></div>
+	{% endif %}
+	
+	{% if fivePlayers == 1 %}
+    <div class = "box2"><div class = "box2player">{{ battleTag1 }}</div> <div><label for = "{{hero1}}"><img src="{% static img1 %}" alt="My image"/><br></br>{{ hero1 }}</label></div></div>
+	<div class = "linebox"><hr class = "lineColor"></div>
+    <div class = "box2"><div class = "box2player">{{ battleTag2 }}</div> <div><label for = "{{hero2}}"><img src="{% static img2 %}" alt="My image"/><br></br>{{ hero2 }}</label></div></div>
+	<div class = "linebox"><hr class = "lineColor"></div>
+    <div class = "box2"><div class = "box2player">{{ battleTag3 }}</div> <div><label for = "{{hero3}}"><img src="{% static img3 %}" alt="My image"/><br></br>{{ hero3 }}</label></div></div>
+	<div class = "linebox"><hr class = "lineColor"></div>
+    <div class = "box2"><div class = "box2player">{{ battleTag4 }}</div> <div><label for = "{{hero4}}"><img src="{% static img4 %}" alt="My image"/><br></br>{{ hero4 }}</label></div></div>
+	<div class = "linebox"><hr class = "lineColor"></div>
+    <div class = "box2"><div class = "box2player">{{ battleTag5 }}</div> <div><label for = "{{hero5}}"><img src="{% static img5 %}" alt="My image"/><br></br>{{ hero5 }}</label></div></div>
+	{% endif %}
+	
+	{% if sixPlayers == 1 %}
+    <div class = "box2"><div class = "box2player">{{ battleTag1 }}</div> <div><label for = "{{hero1}}"><img src="{% static img1 %}" alt="My image"/><br></br>{{ hero1 }}</label></div></div>
+	<div class = "linebox"><hr class = "lineColor"></div>
+    <div class = "box2"><div class = "box2player">{{ battleTag2 }}</div> <div><label for = "{{hero2}}"><img src="{% static img2 %}" alt="My image"/><br></br>{{ hero2 }}</label></div></div>
+	<div class = "linebox"><hr class = "lineColor"></div>
+    <div class = "box2"><div class = "box2player">{{ battleTag3 }}</div> <div><label for = "{{hero3}}"><img src="{% static img3 %}" alt="My image"/><br></br>{{ hero3 }}</label></div></div>
+	<div class = "linebox"><hr class = "lineColor"></div>
+    <div class = "box2"><div class = "box2player">{{ battleTag4 }}</div> <div><label for = "{{hero4}}"><img src="{% static img4 %}" alt="My image"/><br></br>{{ hero4 }}</label></div></div>
+	<div class = "linebox"><hr class = "lineColor"></div>
+    <div class = "box2"><div class = "box2player">{{ battleTag5 }}</div> <div><label for = "{{hero5}}"><img src="{% static img5 %}" alt="My image"/><br></br>{{ hero5 }}</label></div></div>
+	<div class = "linebox"><hr class = "lineColor"></div>
+    <div class = "box2"><div class = "box2player">{{ battleTag6 }}</div> <div><label for = "{{hero6}}"><img src="{% static img6 %}" alt="My image"/><br></br>{{ hero6 }}</label></div></div>
+	{% endif %}
+	
+	
+	
+	<div class = "linebox"><hr class = "lineColor"></div>
+	
+    <form action="{% url 'postSaveTeam' %}" method="post">
+    {% csrf_token %}
+
+	
+	{% if twoPlayers == 1 %}
+        <input type="hidden" name="twoPlayers" value= "{{ twoPlayers }}"/>
+		
+		    <input type="hidden" name="battleTag1" value= "{{ battleTag1 }}"/>
+    <input type="hidden" name="battleTag2" value= "{{ battleTag2 }}"/>
+    <input type="hidden" name="hero1" value= "{{ hero1 }}"/>
+    <input type="hidden" name="hero2" value= "{{ hero2 }}"/>
+		<input type="hidden" name="img1" value= "{{ img1 }}"/>
+    <input type="hidden" name="img2" value= "{{ img2 }}"/>
+	{% endif %}
+	
+    {% if threePlayers == 1 %}
+	<input type="hidden" name="threePlayers" value= "{{ threePlayers }}"/>
+	
+	    <input type="hidden" name="battleTag1" value= "{{ battleTag1 }}"/>
+    <input type="hidden" name="battleTag2" value= "{{ battleTag2 }}"/>
+    <input type="hidden" name="battleTag3" value= "{{ battleTag3 }}"/>
+    <input type="hidden" name="hero1" value= "{{ hero1 }}"/>
+    <input type="hidden" name="hero2" value= "{{ hero2 }}"/>
+    <input type="hidden" name="hero3" value= "{{ hero3 }}"/>
+		<input type="hidden" name="img1" value= "{{ img1 }}"/>
+    <input type="hidden" name="img2" value= "{{ img2 }}"/>
+    <input type="hidden" name="img3" value= "{{ img3 }}"/>
+	{% endif %}
+	
+    {% if fourPlayers == 1 %}
+    <input type="hidden" name="fourPlayers" value= "{{ fourPlayers }}"/>
+	
+	    <input type="hidden" name="battleTag1" value= "{{ battleTag1 }}"/>
+    <input type="hidden" name="battleTag2" value= "{{ battleTag2 }}"/>
+    <input type="hidden" name="battleTag3" value= "{{ battleTag3 }}"/>
+    <input type="hidden" name="battleTag4" value= "{{ battleTag4 }}"/>
+    <input type="hidden" name="hero1" value= "{{ hero1 }}"/>
+    <input type="hidden" name="hero2" value= "{{ hero2 }}"/>
+    <input type="hidden" name="hero3" value= "{{ hero3 }}"/>
+    <input type="hidden" name="hero4" value= "{{ hero4 }}"/>
+		<input type="hidden" name="img1" value= "{{ img1 }}"/>
+    <input type="hidden" name="img2" value= "{{ img2 }}"/>
+    <input type="hidden" name="img3" value= "{{ img3 }}"/>
+    <input type="hidden" name="img4" value= "{{ img4 }}"/>
+	{% endif %}
+	
+	{% if fivePlayers == 1 %}
+	<input type="hidden" name="fivePlayers" value= "{{ fivePlayers }}"/>
+	
+	    <input type="hidden" name="battleTag1" value= "{{ battleTag1 }}"/>
+    <input type="hidden" name="battleTag2" value= "{{ battleTag2 }}"/>
+    <input type="hidden" name="battleTag3" value= "{{ battleTag3 }}"/>
+    <input type="hidden" name="battleTag4" value= "{{ battleTag4 }}"/>
+    <input type="hidden" name="battleTag5" value= "{{ battleTag5 }}"/>
+    <input type="hidden" name="hero1" value= "{{ hero1 }}"/>
+    <input type="hidden" name="hero2" value= "{{ hero2 }}"/>
+    <input type="hidden" name="hero3" value= "{{ hero3 }}"/>
+    <input type="hidden" name="hero4" value= "{{ hero4 }}"/>
+    <input type="hidden" name="hero5" value= "{{ hero5 }}"/>
+		<input type="hidden" name="img1" value= "{{ img1 }}"/>
+    <input type="hidden" name="img2" value= "{{ img2 }}"/>
+    <input type="hidden" name="img3" value= "{{ img3 }}"/>
+    <input type="hidden" name="img4" value= "{{ img4 }}"/>
+    <input type="hidden" name="img5" value= "{{ img5 }}"/>
+	{% endif %}
+	
+	{% if sixPlayers == 1 %}
+	<input type="hidden" name="sixPlayers" value= "{{ sixPlayers }}"/>
+	
+	    <input type="hidden" name="battleTag1" value= "{{ battleTag1 }}"/>
+    <input type="hidden" name="battleTag2" value= "{{ battleTag2 }}"/>
+    <input type="hidden" name="battleTag3" value= "{{ battleTag3 }}"/>
+    <input type="hidden" name="battleTag4" value= "{{ battleTag4 }}"/>
+    <input type="hidden" name="battleTag5" value= "{{ battleTag5 }}"/>
+    <input type="hidden" name="battleTag6" value= "{{ battleTag6 }}"/>
+    <input type="hidden" name="hero1" value= "{{ hero1 }}"/>
+    <input type="hidden" name="hero2" value= "{{ hero2 }}"/>
+    <input type="hidden" name="hero3" value= "{{ hero3 }}"/>
+    <input type="hidden" name="hero4" value= "{{ hero4 }}"/>
+    <input type="hidden" name="hero5" value= "{{ hero5 }}"/>
+    <input type="hidden" name="hero6" value= "{{ hero6 }}"/>
+	<input type="hidden" name="img1" value= "{{ img1 }}"/>
+    <input type="hidden" name="img2" value= "{{ img2 }}"/>
+    <input type="hidden" name="img3" value= "{{ img3 }}"/>
+    <input type="hidden" name="img4" value= "{{ img4 }}"/>
+    <input type="hidden" name="img5" value= "{{ img5 }}"/>
+    <input type="hidden" name="img6" value= "{{ img6 }}"/>
+	{% endif %}
+	
+	
+	
+	
+	
+	
+	
+
+    
+    <p>Would you like to save this team composition into your account?</p>
+	<div class = "marginbutton">
+    <button type = "submit" name="yes", value="yes", class = "button">Yes</button>
+    <button type = "submit" name="no", value="no", class = "button">No</button></div>
+    
+	</form>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

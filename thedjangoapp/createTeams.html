@@ -1,0 +1,12 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Select Number of Players</h1><br></br>
+  <p><a href="{% url 'create2' %}">2 players</a>
+  <p><a href="{% url 'create3' %}">3 players</a>
+  <p><a href="{% url 'create4' %}">4 players</a>
+  <p><a href="{% url 'create5' %}">5 players</a>
+  <p><a href="{% url 'create' %}">6 players</a>
+  <br></br><p>Go to the <a href="{% url 'tutorial' %}">tutorial</a> to learn how to create hero assignments</p>
+  <br></br><br></br><br></br>
+{% endblock %}  

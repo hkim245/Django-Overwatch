@@ -1,0 +1,81 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1>Your Team Composition</h1> 
+<h1>{{ ls.name }}</h1>
+<form method = "post" action = "">
+{% csrf_token %}
+{% load static %}
+    <br></br>
+	    <div class = "box3">
+    <div><strong>Player</strong></div> <div style = "margin-left: 13.5em;"><strong>Hero</strong></div></div>
+	<div class = "linebox"><hr class = "lineColor"></div>
+	
+	
+	
+    {% for createteam in ls.createteam_set.all %}
+    <div class = "box2"><div class = "box2player">{{ createteam.BattleTag_1 }}</div> <div><label for = "{{createteam.Hero_1}}"><img src="{% static createteam.img_1 %}" alt="My image"/><br></br>{{ createteam.Hero_1 }}</label></div></div>
+	<div class = "linebox"><hr class = "lineColor"></div>
+    <div class = "box2"><div class = "box2player">{{ createteam.BattleTag_2 }}</div> <div><label for = "{createteam.Hero_2}}"><img src="{% static createteam.img_2 %}" alt="My image"/><br></br>{{ createteam.Hero_2 }}</label></div></div>
+		
+        {% if createteam.BattleTag_3 != "" %}
+        	<div class = "linebox"><hr class = "lineColor"></div>
+    <div class = "box2"><div class = "box2player">{{ createteam.BattleTag_3 }}</div> <div><label for = "{createteam.Hero_3}}"><img src="{% static createteam.img_3 %}" alt="My image"/><br></br>{{ createteam.Hero_3 }}</label></div></div>
+		{% endif %}
+		
+		{% if createteam.BattleTag_4 != "" %}
+		 	<div class = "linebox"><hr class = "lineColor"></div>
+    <div class = "box2"><div class = "box2player">{{ createteam.BattleTag_4 }}</div> <div><label for = "{createteam.Hero_4}}"><img src="{% static createteam.img_4 %}" alt="My image"/><br></br>{{ createteam.Hero_4 }}</label></div></div>
+		{% endif %}
+
+		{% if createteam.BattleTag_5 != "" %}
+			<div class = "linebox"><hr class = "lineColor"></div>
+    <div class = "box2"><div class = "box2player">{{ createteam.BattleTag_5 }}</div> <div><label for = "{createteam.Hero_5}}"><img src="{% static createteam.img_5 %}" alt="My image"/><br></br>{{ createteam.Hero_5 }}</label></div></div>
+		{% endif %}
+
+		{% if createteam.BattleTag_6 != "" %}
+			<div class = "linebox"><hr class = "lineColor"></div>
+    <div class = "box2"><div class = "box2player">{{ createteam.BattleTag_6 }}</div> <div><label for = "{createteam.Hero_6}}"><img src="{% static createteam.img_6 %}" alt="My image"/><br></br>{{ createteam.Hero_6 }}</label></div></div>
+		{% endif %}
+    {% endfor %}
+	
+	
+	
+	
+	
+	
+	
+	<div class = "linebox"><hr class = "lineColor"></div>
+	
+	
+	
+<!-- <button type = "submit", name="save", value = "save">Save</button>
+<input type = "text", name = "new">
+<button type = "submit", name = "newItem", value = "newItem">Add Notes</button> -->
+</form>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

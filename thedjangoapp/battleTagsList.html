@@ -1,0 +1,15 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+
+{% if user.is_authenticated %}
+<h1>Manage Battle Tags</h1><br></br>
+	<form action="" method="post">
+	{% csrf_token %}
+		
+	</form>
+{% else %}
+    <br></br><h3>You are currently not logged into your account.</h3>
+{% endif %} 
+{% endblock %}
